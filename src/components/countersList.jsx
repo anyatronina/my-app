@@ -12,21 +12,21 @@ const CountersList = () => {
   const [counters, setCounters] = useState(initialState);
 
   const handleIncrement = (id) => {
-    const newCountersInc = counters.map((count) => {
-      count.id === id && (count.value += 1);
-      return count;
+    setCounters((prevState) => {
+      return prevState.map((count) => {
+        count.id === id && (count.value += 1);
+        return count;
+      });
     });
-
-    setCounters(newCountersInc);
   };
 
   const handleDecrement = (id) => {
-    const newCountersDec = counters.map((count) => {
-      count.id === id && (count.value -= 1);
-      return count;
+    setCounters((prevState) => {
+      return prevState.map((count) => {
+        count.id === id && count.value > 0 && (count.value -= 1);
+        return count;
+      });
     });
-
-    setCounters(newCountersDec);
   };
 
   const handleDelete = (id) => {
